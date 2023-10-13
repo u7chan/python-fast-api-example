@@ -13,3 +13,15 @@
    ```sh
    pip install -r requirements.txt
    ```
+
+## Run and Debug
+
+### for VSCode
+
+- VS Code on select [Run] on the Debug start view.
+
+### for Command
+
+```sh
+uvicorn src.main:app --reload
+```
