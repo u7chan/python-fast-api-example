@@ -1,20 +1,20 @@
 # python-fast-api-example
 
-## setup
+## Setup
 
-1. create venv
+1. Create a virtual environment.
 
    ```sh
    python -m venv .venv
    ```
 
-1. install
+1. Install python modules.
 
    ```sh
    pip install -r requirements.txt
    ```
 
-1. migrations to database for executing
+1. Migrations to database for executing.
 
    ```sh
    alembic upgrade head
