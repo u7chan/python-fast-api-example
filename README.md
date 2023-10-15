@@ -1,5 +1,9 @@
 # python-fast-api-example
 
+## Architectures
+
+Python + DDD + [FastAPI](https://github.com/tiangolo/fastapi) + [Alembic](https://github.com/alembic/alembic)
+
 ## Setup
 
 1. Create a virtual environment.
