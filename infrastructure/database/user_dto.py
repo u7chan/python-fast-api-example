@@ -10,7 +10,6 @@ class UserDto:
                 id=user.id,
                 name=user.name,
                 email=user.email,
-                updated_at=user.updated_at,
             ),
         )
 
