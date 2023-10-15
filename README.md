@@ -2,7 +2,7 @@
 
 ## Architectures
 
-Python + DDD + [FastAPI](https://github.com/tiangolo/fastapi) + [Alembic](https://github.com/alembic/alembic)
+Python + DDD + [FastAPI](https://github.com/tiangolo/fastapi) + [Alembic (SQLAlchemy)](https://github.com/sqlalchemy/alembic)
 
 ## Setup
 
