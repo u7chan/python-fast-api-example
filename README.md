@@ -29,7 +29,7 @@
 #### for Command
 
 ```sh
-uvicorn src.main:app --reload
+uvicorn main:app --reload
 ```
 
 ## Auto Generating Migrations

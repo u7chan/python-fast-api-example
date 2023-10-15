@@ -17,10 +17,9 @@ class Base:
         )
 
 
-class User(Base):
+class UserEntity(Base):
     __tablename__ = "users"
 
     id = Column(String, primary_key=True)
     name = Column(String)
-    fullname = Column(String)
-    nickname = Column(String)
+    email = Column(String)
