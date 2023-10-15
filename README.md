@@ -39,3 +39,9 @@ uvicorn main:app --reload
 ```sh
 alembic revision --autogenerate
 ```
+
+## Testing API endpoints
+
+You can check the documentation using Swagger UI.
+
+http://localhost:8000/docs#
