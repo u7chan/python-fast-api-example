@@ -15,7 +15,6 @@ class UserRepository(ABC):
 class UserRepositoryImpl(UserRepository):
     def __init__(self, session: Session):
         self.session = session
-        print(session)
 
     def fetch_all(self) -> [User]:
         try:
