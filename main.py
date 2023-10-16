@@ -1,22 +1,9 @@
 from fastapi import FastAPI, Depends
-from sqlalchemy.orm import Session
 
-from infrastructure.database import get_session
-from domain.repository import UserRepository, UserRepositoryImpl
-from domain.usecase import FetchUsersUseCase, FetchUsersUseCaseImpl
-
+from domain.usecase import FetchUsersUseCase
+from di import inject_fetch_users_usecase
 
 app = FastAPI()
-
-
-def inject_user_repository(session: Session = Depends(get_session)) -> UserRepository:
-    return UserRepositoryImpl(session=session)
-
-
-def inject_fetch_users_usecase(
-    user_repository: UserRepository = Depends(inject_user_repository),
-) -> FetchUsersUseCase:
-    return FetchUsersUseCaseImpl(user_repository=user_repository)
 
 
 @app.get("/health-check")
