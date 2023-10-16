@@ -10,6 +10,10 @@ class UserRepository(ABC):
     def fetch_all(self) -> [User]:
         raise NotImplementedError
 
+    @abstractmethod
+    def save(self, user: User) -> User:
+        raise NotImplementedError
+
 
 class UserRepositoryImpl(UserRepository):
     def __init__(self, session: Session):
@@ -30,3 +34,19 @@ class UserRepositoryImpl(UserRepository):
             return []
 
         return list(map(lambda dto: dto.to_entity(), user_dtos))
+
+    def save(self, user: User) -> User:
+        try:
+            if user.id is None:
+                user.set_new_id()
+                user_dto = UserDto.from_entity(user)
+                self.session.add(user_dto)
+            else:
+                user_dto = UserDto.from_entity(user)
+                _user = self.session.query(UserDto).filter_by(id=user.id).one()
+                _user.update_from_dto(user_dto)
+            self.session.commit()
+        except:
+            raise
+
+        return user_dto.to_entity()

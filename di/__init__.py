@@ -1,2 +1,2 @@
 from .repository import inject_user_repository
-from .usecase import inject_fetch_users_usecase
+from .usecase import inject_create_user_usecase, inject_fetch_users_usecase
