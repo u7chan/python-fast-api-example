@@ -4,3 +4,7 @@ class User:
         self.name = name
         self.email = email
         self.updated_at = updated_at
+
+    def __eq__(self, obj: object) -> bool:
+        if isinstance(obj, User):
+            return self.id == obj.id

@@ -1,4 +1,4 @@
-from domain.model.user import User
+from domain.value_object.user import User
 from infrastructure.database.models import UserEntity
 
 

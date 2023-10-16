@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from domain.model import User
+from domain.value_object import User
 from sqlalchemy.orm.session import Session
 from infrastructure.database import UserDto
 from infrastructure.database.models import UserEntity

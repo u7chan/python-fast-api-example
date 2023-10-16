@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 from domain.repository.user_repository import UserRepository
-from domain.model import User
+from domain.value_object import User
 
 
 class FetchUsersUseCase(ABC):
