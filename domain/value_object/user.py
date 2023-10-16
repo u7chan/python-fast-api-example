@@ -1,5 +1,4 @@
 from typing import Optional
-from uuid import uuid4
 
 
 class User:
@@ -18,6 +17,3 @@ class User:
     def __eq__(self, obj: object) -> bool:
         if isinstance(obj, User):
             return self.id == obj.id
-
-    def set_new_id(self):
-        self.id = str(uuid4())

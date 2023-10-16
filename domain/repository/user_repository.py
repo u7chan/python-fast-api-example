@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from uuid import uuid4
 
 from domain.value_object import User
 from sqlalchemy.orm.session import Session
@@ -38,8 +39,8 @@ class UserRepositoryImpl(UserRepository):
     def save(self, user: User) -> User:
         try:
             if user.id is None:
-                user.set_new_id()
                 user_dto = UserDto.from_entity(user)
+                user_dto.id = str(uuid4())
                 self.session.add(user_dto)
             else:
                 user_dto = UserDto.from_entity(user)
