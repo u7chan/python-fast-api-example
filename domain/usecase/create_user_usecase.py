@@ -6,7 +6,7 @@ from domain.value_object import User
 
 class CreateUserUseCase(ABC):
     @abstractmethod
-    def execute(self):
+    def execute(self) -> User:
         raise NotImplementedError
 
 

@@ -1,7 +1,6 @@
 from datetime import datetime
 
 from sqlalchemy import Column, DateTime, String
-from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy.ext.declarative import as_declarative, declared_attr
 
 from domain.value_object.user import User
@@ -23,9 +22,9 @@ class Base:
 class UserDto(Base):
     __tablename__ = "users"
 
-    id: Mapped[str] = Column(String, primary_key=True, autoincrement=False)
-    name: Mapped[str] = Column(String)
-    email: Mapped[str] = Column(String)
+    id = Column(String, primary_key=True, autoincrement=False)
+    name = Column(String)
+    email = Column(String)
 
     def to_entity(self) -> User:
         return User(
