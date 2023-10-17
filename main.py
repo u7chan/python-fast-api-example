@@ -6,6 +6,6 @@ app = FastAPI()
 app.include_router(user_endpoints.router)
 
 
-@app.get("/health-check")
+@app.get(path="/health-check", tags=["Operation"])
 async def health_check():
     return {"message": "OK"}
