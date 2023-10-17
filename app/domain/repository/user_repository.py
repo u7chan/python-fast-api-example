@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from uuid import uuid4
 from sqlalchemy.orm.session import Session
 
-from app.domain.value_object import User
+from app.domain.entity import User
 from app.infrastructure.database.models import UserDto
 
 

@@ -3,7 +3,7 @@ from datetime import datetime
 from sqlalchemy import Column, DateTime, String
 from sqlalchemy.ext.declarative import as_declarative, declared_attr
 
-from app.domain.value_object.user import User
+from app.domain.entity.user import User
 
 
 @as_declarative()

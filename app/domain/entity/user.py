@@ -1,4 +1,5 @@
 from typing import Optional
+from datetime import datetime
 
 
 class User:
@@ -7,7 +8,7 @@ class User:
         name: str,
         email: str,
         id: Optional[str] = None,
-        updated_at: Optional[str] = None,
+        updated_at: Optional[datetime] = None,
     ):
         self.id = id
         self.name = name
