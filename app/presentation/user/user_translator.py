@@ -1,13 +1,6 @@
-from app.domain.entity.user import (
-    User,
-)
-from app.presentation.user.user_request import (
-    UserRequest,
-)
-from app.presentation.user.user_response import (
-    UserModel,
-    UserResponse,
-)
+from app.domain.entity.user import User
+from app.presentation.user.user_request import UserRequest
+from app.presentation.user.user_response import UserResponse, UsersResponse
 
 
 class UserTranslator:
@@ -15,30 +8,26 @@ class UserTranslator:
     def request_to_entity(
         request: UserRequest,
     ) -> User:
-        return User(
-            id="TODO",
-            name="TODO",
-            email="TODO",
+        return User(name=request.name, email=request.email)
+
+    @staticmethod
+    def entity_to_response(user: User) -> UserResponse:
+        return UserResponse(
+            id=user.id,
+            name=user.name,
+            email=user.email,
+            updated_at=str(user.updated_at),
         )
 
     @staticmethod
     def entities_to_response(
         entities: [User],
-    ) -> UserResponse:
-        return UserResponse(
+    ) -> UsersResponse:
+        return UsersResponse(
             data=list(
                 map(
-                    lambda it: UserTranslator.__user_to_user_model(it),
+                    lambda it: UserTranslator.entity_to_response(it),
                     entities,
                 )
             )
-        )
-
-    @staticmethod
-    def __user_to_user_model(user: User) -> UserModel:
-        return UserModel(
-            id=user.id,
-            name=user.name,
-            email=user.email,
-            updated_at=str(user.updated_at),
         )

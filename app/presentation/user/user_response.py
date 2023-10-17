@@ -3,12 +3,12 @@ from typing import List
 from pydantic import BaseModel
 
 
-class UserModel(BaseModel):
+class UserResponse(BaseModel):
     id: str
     name: str
     email: str
     updated_at: str
 
 
-class UserResponse(BaseModel):
-    data: List[UserModel]
+class UsersResponse(BaseModel):
+    data: List[UserResponse]

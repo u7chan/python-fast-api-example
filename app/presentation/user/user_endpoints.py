@@ -1,7 +1,8 @@
 from fastapi import APIRouter, Depends, status
 
 from app.domain.usecase import CreateUserUseCase, FetchUsersUseCase
-from app.presentation.user.user_response import UserResponse
+from app.presentation.user.user_request import UserRequest
+from app.presentation.user.user_response import UserResponse, UsersResponse
 from app.presentation.user.user_translator import UserTranslator
 from app.di import inject_create_user_usecase, inject_fetch_users_usecase
 
@@ -12,20 +13,24 @@ router = APIRouter()
     path="/user",
     tags=["User"],
     status_code=status.HTTP_201_CREATED,
+    response_model=UserResponse,
 )
 async def create_user(
+    request: UserRequest,
     create_user_usecase: CreateUserUseCase = Depends(inject_create_user_usecase),
-):
-    return create_user_usecase.execute()
+) -> UserResponse:
+    return UserTranslator.entity_to_response(
+        create_user_usecase.execute(UserTranslator.request_to_entity(request))
+    )
 
 
 @router.get(
     path="/users",
     tags=["User"],
     status_code=status.HTTP_200_OK,
-    response_model=UserResponse,
+    response_model=UsersResponse,
 )
 async def fetch_users(
     fetch_users_usecase: FetchUsersUseCase = Depends(inject_fetch_users_usecase),
-) -> UserResponse:
+) -> UsersResponse:
     return UserTranslator.entities_to_response(fetch_users_usecase.execute())

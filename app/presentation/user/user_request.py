@@ -1,5 +1,6 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class UserRequest(BaseModel):
-    pass
+    name: str = Field()
+    email: str = Field()
