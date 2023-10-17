@@ -1,9 +1,9 @@
 from abc import ABC, abstractmethod
 from uuid import uuid4
-
-from domain.value_object import User
 from sqlalchemy.orm.session import Session
-from infrastructure.database.models import UserDto
+
+from app.domain.value_object import User
+from app.infrastructure.database.models import UserDto
 
 
 class UserRepository(ABC):

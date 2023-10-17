@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, status
 
-from domain.usecase import CreateUserUseCase, FetchUsersUseCase
-from di import inject_create_user_usecase, inject_fetch_users_usecase
+from app.domain.usecase import CreateUserUseCase, FetchUsersUseCase
+from app.di import inject_create_user_usecase, inject_fetch_users_usecase
 
 
 router = APIRouter()

@@ -1,13 +1,13 @@
 from fastapi import Depends
 
-from domain.repository import UserRepository
-from domain.usecase import (
+from app.domain.repository import UserRepository
+from app.domain.usecase import (
     CreateUserUseCase,
     CreateUserUseCaseImpl,
     FetchUsersUseCase,
     FetchUsersUseCaseImpl,
 )
-from di.repository import inject_user_repository
+from app.di.repository import inject_user_repository
 
 
 def inject_create_user_usecase(

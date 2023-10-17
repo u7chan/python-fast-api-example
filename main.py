@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Depends
 
-from presentation import user_endpoints
+from app.presentation import user_endpoints
 
 app = FastAPI()
 app.include_router(user_endpoints.router)
