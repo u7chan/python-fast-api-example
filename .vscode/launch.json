@@ -5,11 +5,18 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Run",
+      "name": "Run Serve",
       "type": "python",
       "request": "launch",
       "module": "uvicorn",
       "args": ["main:app", "--reload"],
+      "justMyCode": true
+    },
+    {
+      "name": "Run Tests",
+      "type": "python",
+      "request": "launch",
+      "module": "pytest",
       "justMyCode": true
     }
   ]

@@ -26,14 +26,24 @@ Python + DDD + [FastAPI](https://github.com/tiangolo/fastapi) + [Alembic (SQLAlc
 
 ## Run and Debug
 
-#### for VSCode
+### Serve
 
-- VS Code on select [Run] on the Debug start view.
+VS Code on select `[Run Serve]` on the Debug start view.
 
-#### for Command
+#### run command
 
 ```sh
 uvicorn main:app --reload
+```
+
+### Tests
+
+VS Code on select `[Run Tests]` on the Debug start view.
+
+#### run command
+
+```sh
+pytest
 ```
 
 ## Auto Generating Migrations

@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from sqlalchemy import Column, DateTime, String
-from sqlalchemy.ext.declarative import as_declarative, declared_attr
+from sqlalchemy.orm import as_declarative, declared_attr
 
 from app.domain.entity.user import User
 
