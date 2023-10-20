@@ -1,10 +1,11 @@
 from fastapi import APIRouter, Depends, status
 
-from app.domain.usecase import CreateUserUseCase, FetchUsersUseCase
+from app.domain.usecase.create_user_usecase import CreateUserUseCase
+from app.domain.usecase.fetch_users_usecase import FetchUsersUseCase
 from app.presentation.user.user_request import UserRequest
 from app.presentation.user.user_response import UserResponse, UsersResponse
 from app.presentation.user.user_translator import UserTranslator
-from app.di import inject_create_user_usecase, inject_fetch_users_usecase
+from app.di.usecase import inject_create_user_usecase, inject_fetch_users_usecase
 
 router = APIRouter()
 

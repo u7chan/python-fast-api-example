@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 from app.domain.repository.user_repository import UserRepository
-from app.domain.entity import User
+from app.domain.entity.user import User
 
 
 class FetchUsersUseCase(ABC):

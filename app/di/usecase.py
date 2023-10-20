@@ -1,9 +1,11 @@
 from fastapi import Depends
 
-from app.domain.repository import UserRepository
-from app.domain.usecase import (
+from app.domain.repository.user_repository import UserRepository
+from app.domain.usecase.create_user_usecase import (
     CreateUserUseCase,
     CreateUserUseCaseImpl,
+)
+from app.domain.usecase.fetch_users_usecase import (
     FetchUsersUseCase,
     FetchUsersUseCaseImpl,
 )

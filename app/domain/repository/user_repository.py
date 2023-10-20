@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from uuid import uuid4
 from sqlalchemy.orm.session import Session
 
-from app.domain.entity import User
+from app.domain.entity.user import User
 from app.infrastructure.database.models import UserDto
 
 
@@ -38,12 +38,11 @@ class UserRepositoryImpl(UserRepository):
 
     def save(self, user: User) -> User:
         try:
+            user_dto = UserDto.from_entity(user)
             if user.id is None:
-                user_dto = UserDto.from_entity(user)
                 user_dto.id = str(uuid4())
                 self.session.add(user_dto)
             else:
-                user_dto = UserDto.from_entity(user)
                 _user = self.session.query(UserDto).filter_by(id=user.id).one()
                 _user.update_from_dto(user_dto)
             self.session.commit()
