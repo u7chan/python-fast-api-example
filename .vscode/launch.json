@@ -17,6 +17,7 @@
       "type": "python",
       "request": "launch",
       "module": "pytest",
+      "args": ["-v"],
       "justMyCode": true
     }
   ]
