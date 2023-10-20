@@ -1,5 +1,7 @@
 [run]
-omit = app/infrastructure/database/session.py
+omit =
+    # omit anything in test directory anywhere
+    */tests/*
 
 [report]
 skip_empty = true
