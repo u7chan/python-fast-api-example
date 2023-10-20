@@ -30,7 +30,7 @@ Python + DDD + [FastAPI](https://github.com/tiangolo/fastapi) + [Alembic (SQLAlc
 
 VS Code on select `[Run Serve]` on the Debug start view.
 
-#### run command
+#### Command
 
 ```sh
 uvicorn main:app --reload
@@ -40,15 +40,23 @@ uvicorn main:app --reload
 
 VS Code on select `[Run Tests]` on the Debug start view.
 
-#### run command
+#### Command
+
+Run all tests.
 
 ```sh
-pytest
+pytest -v
+```
+
+Run all tests and show coverage.
+
+```sh
+pytest -v --cov --cov-branch --cov-report=term-missing
 ```
 
 ## Auto Generating Migrations
 
-#### run command
+#### Command
 
 ```sh
 alembic revision --autogenerate

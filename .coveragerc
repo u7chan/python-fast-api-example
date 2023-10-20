@@ -1,0 +1,5 @@
+[run]
+omit = app/infrastructure/database/session.py
+
+[report]
+skip_empty = true
