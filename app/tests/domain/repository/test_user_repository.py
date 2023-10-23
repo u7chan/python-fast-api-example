@@ -1,8 +1,11 @@
 import pytest
 from app.domain.entity.user import User
 
-from app.domain.repository.user_repository import UserRepository, UserRepositoryImpl
+from app.domain.repository.user_repository import UserRepository
 from app.infrastructure.database.models import UserDto
+from app.infrastructure.database.repository.user_repository_impl import (
+    UserRepositoryImpl,
+)
 from app.tests.domain.repository.session_mock import SessionMock
 
 

@@ -2,10 +2,8 @@ import pytest
 from unittest.mock import Mock
 
 from app.domain.entity.user import User
-from app.domain.usecase.create_user_usecase import (
-    CreateUserUseCase,
-    CreateUserUseCaseImpl,
-)
+from app.domain.usecase.create_user_usecase import CreateUserUseCase
+from app.domain.usecase.create_user_usecase_impl import CreateUserUseCaseImpl
 
 
 class TestFetchUsersUseCase:
