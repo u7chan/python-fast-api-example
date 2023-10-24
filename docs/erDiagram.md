@@ -5,7 +5,7 @@ erDiagram
     user ||--o| account : "user.id = account.user_id"
 
     user {
-        int uuid PK ""
+        string id PK ""
         string name
         string email
         timestamp created_at
@@ -13,7 +13,7 @@ erDiagram
     }
 
     account {
-        uuid user_id FK "optional"
+        string user_id FK "optional"
         string login_id PK
         string password_hash
         timestamp created_at

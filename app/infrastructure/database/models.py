@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from sqlalchemy import Column, DateTime, String
+from sqlalchemy import Column, DateTime, ForeignKey, String
 from sqlalchemy.orm import as_declarative, declared_attr
 
 from app.domain.entity.user import User
@@ -20,11 +20,11 @@ class Base:
 
 
 class UserDto(Base):
-    __tablename__ = "users"
+    __tablename__ = "user"
 
-    id = Column(String, primary_key=True, autoincrement=False)
-    name = Column(String)
-    email = Column(String)
+    id = Column(String, primary_key=True, autoincrement=False, nullable=False)
+    name = Column(String, default="", nullable=False)
+    email = Column(String, default="", nullable=False)
 
     def to_entity(self) -> User:
         return User(
@@ -45,3 +45,11 @@ class UserDto(Base):
             name=user.name,
             email=user.email,
         )
+
+
+class AccountDao(Base):
+    __tablename__ = "account"
+
+    user_id = Column(ForeignKey("user.id"), nullable=True)
+    login_id = Column(String, primary_key=True, autoincrement=False, nullable=False)
+    password_hash = Column(String, default="", nullable=False)
