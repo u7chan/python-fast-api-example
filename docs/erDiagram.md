@@ -2,20 +2,21 @@
 
 ```mermaid
 erDiagram
-    users ||--|| account : "user.id = account.user_id"
-    users {
-        id uuid PK
-        name string
-        email string
-        created_at timestamp
-        updated_at timestamp
+    user ||--o| account : "user.id = account.user_id"
+
+    user {
+        int uuid PK ""
+        string name
+        string email
+        timestamp created_at
+        timestamp updated_at
     }
 
     account {
-        user_id uuid FK
-        login_id string PK
-        password_hash string
-        created_at timestamp
-        updated_at timestamp
+        uuid user_id FK "optional"
+        string login_id PK
+        string password_hash
+        timestamp created_at
+        timestamp updated_at
     }
 ```
