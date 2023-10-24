@@ -12,7 +12,7 @@ erDiagram
     }
 
     account {
-        user_id string FK
+        user_id uuid FK
         login_id string PK
         password_hash string
         created_at timestamp
