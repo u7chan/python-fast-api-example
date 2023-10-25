@@ -35,7 +35,7 @@ class UserRepositoryImpl(UserRepository):
             else:
                 _user = self.session.query(UserDto).filter_by(id=user.id).one()
                 _user.update_from_dto(user_dto)
-            self.session.commit()
+            self.session.commit()  # TODO: Delete this line by unit of work
         except:
             raise
 
