@@ -1,6 +1,6 @@
 import pytest
-from app.domain.entity.user import User
 
+from app.domain.entity.user import User
 from app.domain.repository.user_repository import UserRepository
 from app.infrastructure.database.models import UserDto
 from app.infrastructure.database.repository.user_repository_impl import (
@@ -73,9 +73,11 @@ class TestUserRepository:
         # Then
         assert self.session_mock.add_call_count == 1
         assert self.session_mock.commit_call_count == 1
+
         assert actual.id == add_args.id
         assert actual.name == excepted.name
         assert actual.email == excepted.email
+
         assert add_args.name == excepted.name
         assert add_args.email == excepted.email
 
@@ -91,5 +93,6 @@ class TestUserRepository:
         # Then
         assert self.session_mock.one_call_count == 1
         assert self.session_mock.commit_call_count == 1
+
         assert actual.name == excepted.name
         assert actual.email == excepted.email
