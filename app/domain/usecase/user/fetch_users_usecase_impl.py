@@ -1,6 +1,6 @@
 from app.domain.repository.user_repository import UserRepository
 from app.domain.entity.user import User
-from app.domain.usecase.fetch_users_usecase import FetchUsersUseCase
+from app.domain.usecase.user.fetch_users_usecase import FetchUsersUseCase
 
 
 class FetchUsersUseCaseImpl(FetchUsersUseCase):

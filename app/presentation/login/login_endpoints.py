@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, Response, status
 
-from app.domain.usecase.login_usecase import LoginUseCase
+from app.domain.usecase.auth.login_usecase import LoginUseCase
 from app.presentation.login.login_request import LoginRequest
 from app.presentation.login.login_response import LoginResponse
 from app.presentation.login.login_translator import LoginTranslator
