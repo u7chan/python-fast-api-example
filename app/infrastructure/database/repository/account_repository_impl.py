@@ -14,7 +14,6 @@ class AccountRepositoryImpl(AccountRepository):
         try:
             account_dto = AccountDao.from_entity(account)
             self.session.add(account_dto)
-            self.session.commit()
         except:
             raise
 

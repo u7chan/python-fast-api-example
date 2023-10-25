@@ -9,15 +9,18 @@ from app.domain.usecase.auth.create_account_usecase_impl import CreateAccountCas
 class TestCreateAccountCase:
     user_repository_mock: Mock
     account_repository_mock: Mock
+    uow_mock: Mock
     usecase: CreateAccountCase
 
     @pytest.fixture(scope="function", autouse=True)
     def setup(self):
         self.user_repository_mock = Mock()
         self.account_repository_mock = Mock()
+        self.uow_mock = Mock()
         self.usecase = CreateAccountCaseImpl(
             user_repository=self.user_repository_mock,
             account_repository=self.account_repository_mock,
+            uow=self.uow_mock,
         )
 
     def test_should_be_create_account(self):

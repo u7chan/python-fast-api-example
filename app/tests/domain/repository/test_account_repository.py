@@ -29,7 +29,6 @@ class TestAccountRepository:
 
         # Then
         assert self.session_mock.add_call_count == 1
-        assert self.session_mock.commit_call_count == 1
 
         assert actual.user_id == excepted.user_id
         assert actual.login_id == excepted.login_id
