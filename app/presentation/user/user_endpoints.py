@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, status
 
-from app.domain.usecase.create_user_usecase import CreateUserUseCase
-from app.domain.usecase.fetch_users_usecase import FetchUsersUseCase
+from app.domain.usecase.user.create_user_usecase import CreateUserUseCase
+from app.domain.usecase.user.fetch_users_usecase import FetchUsersUseCase
 from app.presentation.user.user_request import UserRequest
 from app.presentation.user.user_response import UserResponse, UsersResponse
 from app.presentation.user.user_translator import UserTranslator

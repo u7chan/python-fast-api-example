@@ -1,6 +1,6 @@
 from app.domain.repository.user_repository import UserRepository
 from app.domain.entity.user import User
-from app.domain.usecase.create_user_usecase import CreateUserUseCase
+from app.domain.usecase.user.create_user_usecase import CreateUserUseCase
 
 
 class CreateUserUseCaseImpl(CreateUserUseCase):
