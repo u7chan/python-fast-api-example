@@ -59,13 +59,13 @@ class AccountDao(Base):
         return Account(
             user_id=self.user_id,
             login_id=self.login_id,
-            password_hash=self.password_hash,
+            password=self.password_hash,
         )
 
     @staticmethod
     def from_entity(account: Account) -> "AccountDao":
-        return UserDto(
+        return AccountDao(
             user_id=account.user_id,
             login_id=account.login_id,
-            password_hash=account.password_hash,
+            password_hash=account.password,
         )
