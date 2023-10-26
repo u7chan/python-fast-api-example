@@ -1,51 +1,59 @@
+from abc import abstractmethod
 from typing import Any, Self
 
 
+class Mock:
+    def __init__(self):
+        self.call_count: int = 0
+        self.args: tuple = ()
+        self.result: Any = None
+
+    def called_count(self) -> int:
+        return self.call_count
+
+    def called_with(self) -> tuple:
+        return self.args
+
+    def return_value(self, value: Any):
+        self.result = value
+
+    def increment(self, *args) -> Any:
+        self.args = args
+        self.call_count += 1
+        return self.result
+
+
 class SessionMock:
-    raise_query: Any = None
-
-    one_return_value: Any = None
-    all_return_value: list[Any] = []
-    add_value: Any = None
-
-    query_call_count = 0
-    filter_by_count = 0
-    order_by_call_count = 0
-    limit_call_count = 0
-    one_call_count = 0
-    all_call_count = 0
-    add_call_count = 0
-    commit_call_count = 0
+    def __init__(self):
+        self.query__mock = Mock()
+        self.filter_by__mock = Mock()
+        self.order_by__mock = Mock()
+        self.limit__mock = Mock()
+        self.one__mock = Mock()
+        self.all__mock = Mock()
+        self.add__mock = Mock()
 
     def query(self, class_type: Any) -> Self:
-        self.query_call_count += 1
-        if not self.raise_query is None:
-            raise self.raise_query
+        self.query__mock.increment(class_type)
         return self
 
     def filter_by(self, **args: Any) -> Self:
-        self.filter_by_count += 1
+        self.filter_by__mock.increment(args)
         return self
 
     def order_by(self, sort: Any) -> Self:
-        self.order_by_call_count += 1
+        self.order_by__mock.increment(sort)
         return self
 
     def limit(self, limit: Any) -> Self:
-        self.limit_call_count += 1
+        self.limit__mock.increment(limit)
         return self
 
     def one(self) -> Any:
-        self.one_call_count += 1
-        return self.one_return_value
+        return self.one__mock.increment()
 
     def all(self) -> list[Any]:
-        self.all_call_count += 1
-        return self.all_return_value
+        return self.all__mock.increment()
 
     def add(self, data: Any):
-        self.add_call_count += 1
-        self.add_value = data
-
-    def commit(self):
-        self.commit_call_count += 1
+        self.add__mock.increment(data)

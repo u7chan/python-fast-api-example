@@ -9,5 +9,9 @@ class UserRepository(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    def save(self, user: User) -> User:
+    def insert(self, user: User) -> User:
+        raise NotImplementedError
+
+    @abstractmethod
+    def update(self, user: User) -> User:
         raise NotImplementedError

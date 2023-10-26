@@ -11,32 +11,26 @@ class UserRepositoryImpl(UserRepository):
         self.session = session
 
     def fetch_all(self) -> [User]:
-        try:
-            user_dtos = (
-                self.session.query(UserDto)
-                .order_by(UserDto.updated_at.desc())
-                .limit(100)
-                .all()
-            )
-        except:
-            raise
+        user_dtos = (
+            self.session.query(UserDto)
+            .order_by(UserDto.updated_at.desc())
+            .limit(100)
+            .all()
+        )
 
         if len(user_dtos) == 0:
             return []
 
         return list(map(lambda dto: dto.to_entity(), user_dtos))
 
-    def save(self, user: User) -> User:
-        try:
-            user_dto = UserDto.from_entity(user)
-            if user.id is None:
-                user_dto.id = str(uuid4())
-                self.session.add(user_dto)
-            else:
-                _user = self.session.query(UserDto).filter_by(id=user.id).one()
-                _user.update_from_dto(user_dto)
-            self.session.commit()
-        except:
-            raise
+    def insert(self, user: User) -> User:
+        user_dto = UserDto.from_entity(user)
+        user_dto.id = str(uuid4())
+        self.session.add(user_dto)
+        return user_dto.to_entity()
 
+    def update(self, user: User) -> User:
+        user_dto = UserDto.from_entity(user)
+        _user = self.session.query(UserDto).filter_by(id=user.id).one()
+        _user.update_from_dto(user_dto)
         return user_dto.to_entity()
