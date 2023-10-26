@@ -9,7 +9,7 @@ class CreateUserUseCaseImpl(CreateUserUseCase):
 
     def execute(self, data: User) -> User:
         try:
-            user = self.user_repository.save(data)
+            user = self.user_repository.insert(data)
         except:
             raise
         return user

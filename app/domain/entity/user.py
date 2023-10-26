@@ -17,4 +17,5 @@ class User:
 
     def __eq__(self, obj: object) -> bool:
         if isinstance(obj, User):
-            return self.id == obj.id
+            return self.__dict__ == obj.__dict__
+        raise NotImplementedError
