@@ -25,7 +25,7 @@ class TestFetchUsersUseCase:
         self.user_repository.insert.return_value = expected
 
         # When
-        actual = self.usecase.execute(data=expected)
+        actual = self.usecase.execute(expected)
 
         # Then
         assert self.user_repository.insert.called == 1
@@ -40,7 +40,7 @@ class TestFetchUsersUseCase:
 
         # When
         with pytest.raises(Exception) as actual:
-            self.usecase.execute(data=User(name="#name", email="#email"))
+            self.usecase.execute(User(name="#name", email="#email"))
 
         # Then
         assert self.user_repository.insert.called == 1
