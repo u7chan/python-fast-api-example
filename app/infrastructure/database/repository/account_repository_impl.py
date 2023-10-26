@@ -1,4 +1,3 @@
-from uuid import uuid4
 from sqlalchemy.orm.session import Session
 
 from app.domain.entity.account import Account
@@ -11,10 +10,7 @@ class AccountRepositoryImpl(AccountRepository):
         self.session = session
 
     def insert(self, account: Account) -> Account:
-        try:
-            account_dto = AccountDao.from_entity(account)
-            self.session.add(account_dto)
-        except:
-            raise
+        account_dto = AccountDao.from_entity(account)
+        self.session.add(account_dto)
 
         return account_dto.to_entity()

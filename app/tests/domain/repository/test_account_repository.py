@@ -10,30 +10,28 @@ from app.tests.domain.repository.session_mock import SessionMock
 
 
 class TestAccountRepository:
-    session_mock: SessionMock
+    session: SessionMock
     repository: AccountRepository
 
     @pytest.fixture(scope="function", autouse=True)
     def setup(self):
-        self.session_mock = SessionMock()
-        self.repository = AccountRepositoryImpl(session=self.session_mock)
+        self.session = SessionMock()
+        self.repository = AccountRepositoryImpl(session=self.session)
 
-    def test_should_be_append_data(self):
+    def test_should_be_insert_data(self):
         # Given
-        account = Account(user_id="a", login_id="b", password="c")
+        account = Account(
+            user_id="#user_id", login_id="#login_id", password="#password"
+        )
         excepted = AccountDao.from_entity(account)
 
         # When
-        actual = self.repository.insert(account=account)
-        add_args = self.session_mock.add_value
+        self.repository.insert(account=account)
 
         # Then
-        assert self.session_mock.add_call_count == 1
+        assert self.session.add__mock.called_count() == 1
 
+        (actual,) = self.session.add__mock.called_with()
         assert actual.user_id == excepted.user_id
         assert actual.login_id == excepted.login_id
-        assert actual.password == excepted.password_hash
-
-        assert add_args.user_id == excepted.user_id
-        assert add_args.login_id == excepted.login_id
-        assert add_args.password_hash == excepted.password_hash
+        assert actual.password_hash == excepted.password_hash
