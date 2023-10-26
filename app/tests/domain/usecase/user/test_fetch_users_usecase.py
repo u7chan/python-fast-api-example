@@ -8,12 +8,16 @@ from app.domain.usecase.user.create_user_usecase_impl import CreateUserUseCaseIm
 
 class TestFetchUsersUseCase:
     user_repository: Mock
+    uow: Mock
     usecase: CreateUserUseCase
 
     @pytest.fixture(scope="function", autouse=True)
     def setup(self):
         self.user_repository = Mock()
-        self.usecase = CreateUserUseCaseImpl(user_repository=self.user_repository)
+        self.uow = Mock()
+        self.usecase = CreateUserUseCaseImpl(
+            user_repository=self.user_repository, uow=self.uow
+        )
 
     def test_should_be_create_user(self):
         # Given
@@ -24,7 +28,9 @@ class TestFetchUsersUseCase:
         actual = self.usecase.execute(data=expected)
 
         # Then
-        self.user_repository.insert.assert_called_once()
+        assert self.user_repository.insert.called == 1
+        assert self.uow.begin.called == 1
+        assert self.uow.commit.called == 1
         assert actual == expected
 
     def test_should_be_exception(self):
@@ -37,5 +43,6 @@ class TestFetchUsersUseCase:
             self.usecase.execute(data=User(name="#name", email="#email"))
 
         # Then
-        self.user_repository.insert.assert_called_once()
+        assert self.user_repository.insert.called == 1
+        assert self.uow.rollback.called == 1
         assert str(actual.value) == expected
