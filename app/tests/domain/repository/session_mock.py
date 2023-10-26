@@ -4,23 +4,23 @@ from typing import Any, Self
 
 class Mock:
     def __init__(self):
-        self.call_count: int = 0
-        self.args: tuple = ()
-        self.result: Any = None
+        self.__call_count: int = 0
+        self.__args: tuple = ()
+        self.__result: Any = None
 
     def called_count(self) -> int:
-        return self.call_count
+        return self.__call_count
 
     def called_with(self) -> tuple:
-        return self.args
+        return self.__args
 
     def return_value(self, value: Any):
-        self.result = value
+        self.__result = value
 
     def increment(self, *args) -> Any:
-        self.args = args
-        self.call_count += 1
-        return self.result
+        self.__args = args
+        self.__call_count += 1
+        return self.__result
 
 
 class SessionMock:
