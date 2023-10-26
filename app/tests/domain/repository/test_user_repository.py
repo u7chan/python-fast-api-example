@@ -29,7 +29,7 @@ class TestUserRepository:
         assert len(actual) == 0
         assert self.session.query__mock.called_with()[0] is UserDto
         assert self.session.limit__mock.called_with()[0] == 100
-        assert self.session.all__mock.call_count == 1
+        assert self.session.all__mock.called_count() == 1
 
     def test_should_be_fetch_multiple_item(self):
         # Given
@@ -51,7 +51,7 @@ class TestUserRepository:
 
         assert self.session.query__mock.called_with()[0] is UserDto
         assert self.session.limit__mock.called_with()[0] == 100
-        assert self.session.all__mock.call_count == 1
+        assert self.session.all__mock.called_count() == 1
 
     def test_should_be_insert_data(self):
         # Given
@@ -81,4 +81,4 @@ class TestUserRepository:
         # Then
         assert self.session.query__mock.called_with()[0] is UserDto
         assert self.session.filter_by__mock.called_with()[0] == {"id": user.id}
-        assert self.session.one__mock.call_count == 1
+        assert self.session.one__mock.called_count() == 1
