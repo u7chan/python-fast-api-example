@@ -15,22 +15,23 @@ class CreateAccountCaseImpl(CreateAccountCase):
         uow: UnitOfWork,
     ):
         self.user_repository = user_repository
-        self.account_repository = (account_repository,)
+        self.account_repository = account_repository
         self.uow = uow
 
-    def execute(self, create_account: CreateAccount):
+    def execute(self, data: CreateAccount):
         try:
             self.uow.begin()
-            user = self.user_repository.save(
-                User(name=create_account.name, email=create_account.email)
-            )
+            print("######1")
+            user = self.user_repository.insert(User(name=data.name, email=data.email))
+            print("######2")
             self.account_repository.insert(
                 Account(
                     user_id=user.id,
                     login_id=user.email,
-                    password=create_account.password,
+                    password=data.password,
                 )
             )
             self.uow.commit()
         except:
             self.uow.rollback()
+            raise
