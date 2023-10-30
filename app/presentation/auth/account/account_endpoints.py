@@ -16,7 +16,7 @@ router = APIRouter()
 @router.post(
     path="/account",
     tags=["Auth"],
-    status_code=status.HTTP_200_OK,
+    status_code=status.HTTP_201_CREATED,
     response_model=AccountResponse,
     responses={
         status.HTTP_409_CONFLICT: {
