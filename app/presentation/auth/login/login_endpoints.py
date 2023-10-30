@@ -19,7 +19,7 @@ async def login(
     request: LoginRequest,
     response: Response,
     login_usecase: LoginUseCase = Depends(inject_login_usecase),
-):
+) -> LoginResponse:
     session = login_usecase.execute(LoginTranslator.request_to_entity(request))
     response.set_cookie(
         key="session",
