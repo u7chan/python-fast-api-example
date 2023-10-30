@@ -48,7 +48,7 @@ class UserDto(Base):
         )
 
 
-class AccountDao(Base):
+class AccountDto(Base):
     __tablename__ = "account"
 
     user_id = Column(ForeignKey("user.id"), nullable=True)
@@ -63,8 +63,8 @@ class AccountDao(Base):
         )
 
     @staticmethod
-    def from_entity(account: Account) -> "AccountDao":
-        return AccountDao(
+    def from_entity(account: Account) -> "AccountDto":
+        return AccountDto(
             user_id=account.user_id,
             login_id=account.login_id,
             password_hash=account.password,

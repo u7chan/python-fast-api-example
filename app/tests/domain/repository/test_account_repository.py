@@ -4,7 +4,7 @@ from sqlalchemy.exc import NoResultFound
 
 from app.domain.entity.account import Account
 from app.domain.repository.account_repository import AccountRepository
-from app.infrastructure.database.models import AccountDao
+from app.infrastructure.database.models import AccountDto
 from app.infrastructure.database.repository.account_repository_impl import (
     AccountRepositoryImpl,
 )
@@ -25,7 +25,7 @@ class TestAccountRepository:
         account = Account(
             user_id="#user_id", login_id="#login_id", password="#password"
         )
-        excepted = AccountDao.from_entity(account)
+        excepted = AccountDto.from_entity(account)
 
         # When
         self.repository.insert(account=account)
@@ -43,7 +43,7 @@ class TestAccountRepository:
         excepted = Account(
             user_id="#user_id", login_id="#login_id", password="#password"
         )
-        self.session.one__mock.return_value(AccountDao.from_entity(excepted))
+        self.session.one__mock.return_value(AccountDto.from_entity(excepted))
 
         # When
         actual = self.repository.find_by_login_id(login_id="#login_id")
