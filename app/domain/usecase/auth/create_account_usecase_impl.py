@@ -21,9 +21,7 @@ class CreateAccountCaseImpl(CreateAccountCase):
     def execute(self, data: CreateAccount):
         try:
             self.uow.begin()
-            print("######1")
             user = self.user_repository.insert(User(name=data.name, email=data.email))
-            print("######2")
             self.account_repository.insert(
                 Account(
                     user_id=user.id,
