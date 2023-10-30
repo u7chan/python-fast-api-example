@@ -11,3 +11,8 @@ class Account:
         self.user_id = user_id
         self.login_id = login_id
         self.password = password
+
+    def __eq__(self, obj: object) -> bool:
+        if isinstance(obj, Account):
+            return self.__dict__ == obj.__dict__
+        raise NotImplementedError
