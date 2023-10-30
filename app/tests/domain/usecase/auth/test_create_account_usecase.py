@@ -2,22 +2,22 @@ import pytest
 from unittest.mock import Mock
 
 from app.domain.entity.create_account import CreateAccount
-from app.domain.usecase.auth.create_account_usecase import CreateAccountCase
-from app.domain.usecase.auth.create_account_usecase_impl import CreateAccountCaseImpl
+from app.domain.usecase.auth.create_account_usecase import CreateAccountUseCase
+from app.domain.usecase.auth.create_account_usecase_impl import CreateAccountUseCaseImpl
 
 
-class TestCreateAccountCase:
+class TestCreateAccountUseCase:
     user_repository: Mock
     account_repository: Mock
     uow: Mock
-    usecase: CreateAccountCase
+    usecase: CreateAccountUseCase
 
     @pytest.fixture(scope="function", autouse=True)
     def setup(self):
         self.user_repository = Mock()
         self.account_repository = Mock()
         self.uow = Mock()
-        self.usecase = CreateAccountCaseImpl(
+        self.usecase = CreateAccountUseCaseImpl(
             user_repository=self.user_repository,
             account_repository=self.account_repository,
             uow=self.uow,
