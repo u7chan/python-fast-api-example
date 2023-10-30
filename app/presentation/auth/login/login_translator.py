@@ -1,7 +1,7 @@
 from app.domain.entity.login import Login
 from app.domain.entity.session import Session
-from app.presentation.login.login_request import LoginRequest
-from app.presentation.login.login_response import LoginResponse
+from app.presentation.auth.login.login_request import LoginRequest
+from app.presentation.auth.login.login_response import LoginResponse
 
 
 class LoginTranslator:
