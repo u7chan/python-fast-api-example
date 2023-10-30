@@ -1,11 +1,13 @@
 from fastapi import FastAPI
 
-from app.presentation.login import login_endpoints
+from app.presentation.auth.login import login_endpoints
+from app.presentation.auth.account import account_endpoints
 from app.presentation.user import user_endpoints
 
 
 app = FastAPI()
 app.include_router(login_endpoints.router)
+app.include_router(account_endpoints.router)
 app.include_router(user_endpoints.router)
 
 

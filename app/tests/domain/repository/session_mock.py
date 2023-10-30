@@ -1,11 +1,12 @@
 from abc import abstractmethod
-from typing import Any, Self
+from typing import Any, Optional, Self
 
 
 class Mock:
     def __init__(self):
         self.__call_count: int = 0
         self.__args: tuple = ()
+        self.__error: Optional[Exception] = None
         self.__result: Any = None
 
     def called_count(self) -> int:
@@ -14,12 +15,17 @@ class Mock:
     def called_with(self) -> tuple:
         return self.__args
 
+    def raise_error(self, value: Exception):
+        self.__error = value
+
     def return_value(self, value: Any):
         self.__result = value
 
     def increment(self, *args) -> Any:
         self.__args = args
         self.__call_count += 1
+        if self.__error is not None:
+            raise self.__error
         return self.__result
 
 
